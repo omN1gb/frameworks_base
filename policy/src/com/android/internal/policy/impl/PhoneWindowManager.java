@@ -1876,14 +1876,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             // to wake the device but don't pass the key to the application.
             result = 0;
 
-	boolean isBtnMouse = (keyCode == BTN_MOUSE);
-	if (isBtnMouse) {
-	    result &= ~ACTION_PASS_TO_USER;
-	}
-
             final boolean isWakeKey = (policyFlags
                     & (WindowManagerPolicy.FLAG_WAKE | WindowManagerPolicy.FLAG_WAKE_DROPPED)) != 0
-                    || (isBtnMouse && mTrackpadWakeScreen)
+                    || ((keyCode == BTN_MOUSE) && mTrackpadWakeScreen)
                     || ((keyCode == KeyEvent.KEYCODE_VOLUME_UP) && mVolumeWakeScreen)
                     || ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) && mVolumeWakeScreen);
 
